@@ -176,11 +176,6 @@
             $test_store = new Store($name, $city);
             $test_store->save();
 
-            $name2 = 'Nordstrom';
-            $city2 = 'Flagstaff';
-            $test_store2 = new Store($name2, $city2);
-            $test_store2->save();
-
             $new_name = 'Expensive Shoes';
 
             // Act
@@ -192,7 +187,23 @@
 
         function testDelete()
         {
+            // Arrange
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
+            $test_store->save();
 
+            $name2 = 'Nordstrom';
+            $city2 = 'Flagstaff';
+            $test_store2 = new Store($name2, $city2);
+            $test_store2->save();
+
+            // Act
+            $test_store->delete();
+            $result = Store::getAll();
+
+            // Assert
+            $this->assertEquals([$test_store2], $result);
         }
     }
 ?>
