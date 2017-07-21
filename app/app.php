@@ -87,6 +87,20 @@
         return $app['twig']->render('brand.html.twig', array('brand' => $brand));
     });
 
+    $app->patch('/brands/{id}', function($id) use ($app) {
+        $brand = Brand::find($id);
+        $new_name = $_POST['new_name'];
+        if ($new_name) {
+            $brand->updateName($new_name);
+        }
+        $new_price_pt = $_POST['price_pt'];
+        if ($new_price_pt) {
+            $brand->updatePricePt($new_price_pt);
+        }
+
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+    });
+
 // After deleting all the brands, view the empty list of brands
     $app->delete('delete_brands', function() use($app) {
         Brand::deleteAll();
