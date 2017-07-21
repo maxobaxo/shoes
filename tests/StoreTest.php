@@ -226,22 +226,49 @@
 
         function testAddBrand()
         {
-            // $name = 'Payless Shoes';
-            // $city = 'Tuscon';
-            // $test_store = new Store($name, $city);
-            // $test_store->save();
-            //
-            // $name = 'Adidas';
-            // $price_pt = 'low';
-            // $test_brand = new Brand($name, $price_pt);
-            // $test_brand->save();
-            //
-            // // Act
-            // $test_store->delete();
-            // $result = Store::getAll();
-            //
-            // // Assert
-            // $this->assertEquals([$test_store2], $result);
+            // Arrange
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
+            $test_store->save();
+
+            $brand_name = 'Adidas';
+            $price_pt = 'low';
+            $test_brand = new Brand($brand_name, $price_pt);
+            $test_brand->save();
+
+            // Act
+            $test_store->addBrand($test_brand);
+
+            // Assert
+            $this->assertEquals([$test_brand], $test_store->getBrands());
         }
+
+        function testGetBrands()
+        {
+            // Arrange
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
+            $test_store->save();
+
+            $brand_name = 'Adidas';
+            $price_pt = 'low';
+            $test_brand = new Brand($brand_name, $price_pt);
+            $test_brand->save();
+
+            $name2 = 'Nike';
+            $price_pt2 = 'high';
+            $test_brand2 = new Brand($name2, $price_pt2);
+            $test_brand2->save();
+
+            // Act
+            $test_store->addBrand($test_brand);
+            $test_store->addBrand($test_brand2);
+
+            // Assert
+            $this->assertEquals([$test_brand, $test_brand2], $test_store->getBrands());
+        }
+
     }
 ?>
