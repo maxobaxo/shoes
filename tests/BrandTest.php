@@ -20,6 +20,20 @@
             Brand::deleteAll();
         }
 
+        function testCapitalizeName()
+        {
+            $name = 'aDidas superFly';
+            $price_pt = 'low';
+            $test_brand = new Brand($name, $price_pt);
+            $test_brand->save();
+
+            // Act
+            $result = $test_brand->capitalizeName($name);
+
+            // Assert
+            $this->assertEquals('Adidas Superfly', $result);
+        }
+
         function testGetName()
         {
             // Arrange

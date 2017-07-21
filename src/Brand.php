@@ -7,9 +7,21 @@
 
         function __construct($name, $price_pt, $id = null)
         {
-            $this->name = ucfirst(strtolower($name));
+            $this->name = $this->capitalizeName($name);
             $this->price_pt = $price_pt;
             $this->id = $id;
+        }
+
+        function capitalizeName($name)
+        {
+            $lower_ucfirst_name_arr = array();
+            $name_words = explode(" ", $name);
+            foreach ($name_words as $word) {
+                $word = ucfirst(strtolower($word));
+                array_push($lower_ucfirst_name_arr, $word);
+            }
+            $name = implode(" ", $lower_ucfirst_name_arr);
+            return $name;
         }
 
         function getName()
