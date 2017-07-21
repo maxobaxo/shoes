@@ -209,7 +209,22 @@
 
         function testDelete()
         {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'medium';
+            $test_brand = new Brand($name, $price_pt);
+            $test_brand->save();
 
+            $name2 = 'Nike';
+            $price_pt2 = 'high';
+            $test_brand2 = new Brand($name2, $price_pt2);
+            $test_brand2->save();
+
+            // Act
+            $test_brand->delete();
+
+            // Assert
+            $this->assertEquals([$test_brand2], Brand::getAll());
         }
     }
 ?>
