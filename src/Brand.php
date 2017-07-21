@@ -7,7 +7,7 @@
 
         function __construct($name, $price_pt, $id = null)
         {
-            $this->name = $name;
+            $this->name = ucfirst(strtolower($name));
             $this->price_pt = $price_pt;
             $this->id = $id;
         }

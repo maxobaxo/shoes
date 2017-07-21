@@ -7,7 +7,7 @@
 
         function __construct($name, $city, $id = null)
         {
-            $this->name = $name;
+            $this->name = ucfirst(strtolower($name));
             $this->city = $city;
             $this->id = $id;
         }

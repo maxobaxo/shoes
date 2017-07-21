@@ -21,15 +21,17 @@
         return $app['twig']->render('index.html.twig');
     });
 
-// View current list of stores
+// View current list of stores (w/ options to add a new store)
     $app->get('/stores', function() use ($app) {
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
 // After adding a new store,  view updated list of stores
     $app->post('/stores', function() use ($app) {
-        $new_store = new Store($_POST['name'], $_POST['city']);
-        $new_store->save();
+        if (($_POST['name']) && ($_POST['city'])) {
+            $new_store = new Store($_POST['name'], $_POST['city']);
+            $new_store->save();
+        }
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
@@ -75,9 +77,10 @@
 
 // After adding a new brand,  view updated list of brands
     $app->post('/brands', function() use ($app) {
-        $new_brand = new Brand($_POST['name'], $_POST['price_pt']);
-        $new_brand->save();
-
+        if (($_POST['name']) && ($_POST['price_pt'])) {
+            $new_brand = new Brand($_POST['name'], $_POST['price_pt']);
+            $new_brand->save();
+        }
 
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
