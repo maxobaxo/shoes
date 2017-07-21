@@ -144,7 +144,7 @@
             $result = Store::getAll();
 
             // Assert
-            $this->assertEquals([$test_store, $test_store2], $result);
+            $this->assertEquals([$test_store2, $test_store], $result);
         }
 
         function testDeleteAll()
@@ -168,7 +168,7 @@
             $this->assertEquals([], $result);
         }
 
-        function testUpdate()
+        function testUpdateName()
         {
             // Arrange
             $name = 'Payless Shoes';
@@ -179,10 +179,27 @@
             $new_name = 'Expensive Shoes';
 
             // Act
-            $test_store->update($new_name);
+            $test_store->updateName($new_name);
 
             // Assert
             $this->assertEquals($new_name, $test_store->getName());
+        }
+
+        function testUpdateCity()
+        {
+            // Arrange
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
+            $test_store->save();
+
+            $new_city = 'Lake Havasu City';
+
+            // Act
+            $test_store->updateCity($new_city);
+
+            // Assert
+            $this->assertEquals($new_city, $test_store->getCity());
         }
 
         function testDelete()

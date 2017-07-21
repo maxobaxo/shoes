@@ -90,11 +90,22 @@
             }
         }
 
-        function update($new_name)
+        function updateName($new_name)
         {
             $executed = $GLOBALS['DB']->exec("UPDATE stores SET name = '{$new_name}' WHERE id = {$this->getId()};");
             if ($executed) {
                 $this->setName($new_name);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function updateCity($new_city)
+        {
+            $executed = $GLOBALS['DB']->exec("UPDATE stores SET city = '{$new_city}' WHERE id = {$this->getId()};");
+            if ($executed) {
+                $this->setCity($new_city);
                 return true;
             } else {
                 return false;
