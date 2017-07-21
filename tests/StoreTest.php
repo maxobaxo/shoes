@@ -29,7 +29,19 @@
 
         function testSetName()
         {
+            // Arrange
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
 
+            $new_name = 'Payless Express';
+
+            // Act
+            $test_store->setName($new_name);
+            $result = $test_store->getName();
+
+            // Assert
+            $this->assertEquals($new_name, $result);
         }
 
         function testGetCity()
