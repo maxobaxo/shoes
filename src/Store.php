@@ -59,7 +59,7 @@
                 $name = $store['name'];
                 $city = $store['city'];
                 $id = $store['id'];
-                if ($id = $search_id) {
+                if ($id == $search_id) {
                     $found_store = new Store($name, $city, $id);
                 }
             }

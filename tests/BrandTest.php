@@ -108,7 +108,7 @@
             $executed = $test_brand->save();
 
             // Assert
-            $this->assertTrue($executed, "The brand was not saved to the database");
+            $this->assertTrue($executed, 'The brand was not saved to the database');
         }
 
         function testGetAll()
@@ -157,7 +157,23 @@
 
         function testFind()
         {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'medium';
+            $test_brand = new Brand($name, $price_pt);
+            $test_brand->save();
 
+            // Arrange
+            $name2 = 'Nike';
+            $price_pt2 = 'high';
+            $test_brand2 = new Brand($name2, $price_pt2);
+            $test_brand2->save();
+
+            // Act
+            $result = Brand::find($test_brand2->getId());
+
+            // Assert
+            $this->assertEquals($test_brand2, $result);
         }
     }
 ?>
