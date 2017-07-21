@@ -24,12 +24,12 @@
 
         function getCity()
         {
-            // return $this->city;
+            return $this->city;
         }
 
         function setCity($new_city)
         {
-            // $this->city = $new_city;
+            $this->city = $new_city;
         }
 
         function getId()

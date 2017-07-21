@@ -46,12 +46,29 @@
 
         function testGetCity()
         {
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
 
+            // Act
+            $result = $test_store->getCity();
+
+            // Assert
+            $this->assertEquals($city, $result);
         }
 
         function testSetCity()
         {
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
 
+            $new_city = 'Flagstaff';
+            // Act
+            $test_store->setCity($new_city);
+            $result = $test_store->getCity();
+            // Assert
+            $this->assertEquals($new_city, $result);
         }
 
         function testSave()
