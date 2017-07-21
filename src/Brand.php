@@ -51,7 +51,7 @@
         static function getAll()
         {
             $brands = array();
-            $returned_brands = $GLOBALS['DB']->query('SELECT * FROM brands;');
+            $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
             foreach ($returned_brands as $brand) {
                 $name = $brand['name'];
                 $price_pt = $brand['price_pt'];

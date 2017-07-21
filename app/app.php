@@ -73,5 +73,15 @@
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
+// After adding a new brand,  view updated list of brands
+    $app->post('/brands', function() use ($app) {
+        $new_brand = new Brand($_POST['name'], $_POST['price_pt']);
+        $new_brand->save();
+
+
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+    });
+
+
     return $app;
 ?>
