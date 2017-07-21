@@ -51,5 +51,36 @@
             $this->assertEquals($new_name, $result);
         }
 
+        function testGetPricePt()
+        {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'low';
+            $test_brand = new Brand($name, $price_pt);
+
+            // Act
+            $result = $test_brand->getPricePt();
+
+            // Assert
+            $this->assertEquals($price_pt, $result);
+        }
+
+        function testSetPricePt()
+        {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'low';
+            $test_brand = new Brand($name, $price_pt);
+
+            $new_price_pt = 'medium';
+
+            // Act
+            $test_brand->setPricePt($new_price_pt);
+            $result = $test_brand->getPricePt();
+
+            // Assert
+            $this->assertEquals($new_price_pt, $result);
+        }
+
     }
 ?>

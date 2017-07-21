@@ -24,12 +24,12 @@
 
         function getPricePt()
         {
-
+            return $this->price_pt;
         }
 
-        function setPricePt()
+        function setPricePt($new_price_pt)
         {
-
+            $this->price_pt = $new_price_pt;
         }
 
         function getId()
