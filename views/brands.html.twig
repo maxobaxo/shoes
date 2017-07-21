@@ -11,7 +11,13 @@
             <h2>Add a Brand</h2>
             <form action='/brands' method='post'>
                 <input placeholder='Brand Name' type='text' name='name'>
-                <input placeholder='Price Point' type='text' name='price_pt'>
+
+                <label for="Price Point">Select a Price-Point</label>
+                <select name="price_pt">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
                 <button type='submit' class='btn btn-success'>Add Brand</button>
             </form>
 

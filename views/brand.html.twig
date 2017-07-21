@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>        <title>Distri-shoe-tion DB</title>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='jumbotron'>
+                <h1>Distri-shoe-tion | Brand Profile</h1>
+            </div>
+
+            <h2>{{ brand.getName }} ({{ brand.getCity }})</h2>
+
+            <h3>Edit Brand Information:</h3>
+            <form action='/brands/{{ brand.getId }}' method='post'>
+                <input type='hidden' name='_method' value='patch'>
+
+                <div class='form-group'>
+                    <label for='new_name'>Edit Brand Name</label>
+                    <input type='text' name='new_name' placeholder=' {{ brand.getName }}'>
+                </div>
+                <div class='form-group'>
+                    <label for='new_city'>Edit Brand City</label>
+                    <input type='text' name='new_city' placeholder=' {{ brand.getPricePt }}'>
+                </div>
+                <button type='submit' class='btn btn-success'>Edit Brand</button>
+            </form>
+
+            <form action='/brands' method='post'>
+                <input type='hidden' name='_method' value='delete'>
+                <input type='hidden' name='brand_id' value='{{ brand.getId }}'>
+                <button type='submit' class='btn btn-danger'>Delete Brand</button>
+            </form>
+
+
+            <a href='/'>Home</a>
+        </div>
+    </body>
+</html>

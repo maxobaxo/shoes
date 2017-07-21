@@ -82,6 +82,17 @@
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
+    $app->get('brands/{id}', function($id) use ($app) {
+        $brand = Brand::find($id);
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand));
+    });
+
+// After deleting all the brands, view the empty list of brands
+    $app->delete('delete_brands', function() use($app) {
+        Brand::deleteAll();
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+    });
+
 
     return $app;
 ?>
