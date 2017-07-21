@@ -34,12 +34,18 @@
 
         function getId()
         {
-
+            return $this->id;
         }
 
         function save()
         {
-
+            $executed = $GLOBALS['DB']->exec("INSERT INTO stores (name, city) VALUES ('{$this->getName()}', '{$this->getCity()}');");
+            if ($executed) {
+                $this->id = $GLOBALS['DB']->lastInsertId();
+                return true;
+            } else {
+                return false;
+            }
         }
 
         static function find()

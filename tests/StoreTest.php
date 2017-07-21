@@ -46,6 +46,7 @@
 
         function testGetCity()
         {
+            // Arrange
             $name = 'Payless Shoes';
             $city = 'Tuscon';
             $test_store = new Store($name, $city);
@@ -59,6 +60,7 @@
 
         function testSetCity()
         {
+            // Arrange
             $name = 'Payless Shoes';
             $city = 'Tuscon';
             $test_store = new Store($name, $city);
@@ -71,17 +73,36 @@
             $this->assertEquals($new_city, $result);
         }
 
+        function testGetId()
+        {
+            // Arrange
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
+            $test_store->save();
+
+            // Act
+            $result = $test_store->getId();
+
+            // Assert
+            $this->assertTrue(is_numeric($result));
+        }
+
         function testSave()
         {
+            // Arrange
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
 
+            // Act
+            $executed = $test_store->save();
+
+            // Assert
+            $this->assertTrue($executed, 'This store has not been saved to the database');
         }
 
         function testFind()
-        {
-
-        }
-
-        function testGetId()
         {
 
         }
