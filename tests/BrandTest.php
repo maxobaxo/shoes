@@ -14,11 +14,11 @@
 
     class BrandTest extends PHPUnit_Framework_TestCase
     {
-        // protected function tearDown()
-        // {
-        //     Store::deleteAll();
-        //     Brand::deleteAll()
-        // }
+        protected function tearDown()
+        {
+            Store::deleteAll();
+            Brand::deleteAll();
+        }
 
         function testGetName()
         {
@@ -109,6 +109,55 @@
 
             // Assert
             $this->assertTrue($executed, "The brand was not saved to the database");
+        }
+
+        function testGetAll()
+        {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'medium';
+            $test_brand = new Brand($name, $price_pt);
+            $test_brand->save();
+
+            // Arrange
+            $name2 = 'Nike';
+            $price_pt2 = 'high';
+            $test_brand2 = new Brand($name2, $price_pt2);
+            $test_brand2->save();
+
+            // Act
+            $result = Brand::getAll();
+
+            // Assert
+            $this->assertEquals([$test_brand, $test_brand2], $result);
+
+        }
+
+        function testDeleteAll()
+        {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'medium';
+            $test_brand = new Brand($name, $price_pt);
+            $test_brand->save();
+
+            // Arrange
+            $name2 = 'Nike';
+            $price_pt2 = 'high';
+            $test_brand2 = new Brand($name2, $price_pt2);
+            $test_brand2->save();
+
+            // Act
+            Brand::deleteAll();
+            $result = Brand::getAll();
+
+            // Assert
+            $this->assertEquals([], $result);
+        }
+
+        function testFind()
+        {
+
         }
     }
 ?>
