@@ -8,28 +8,34 @@
             <div class='jumbotron'>
                 <h1>Distri-shoe-tion | Brand Profile</h1>
             </div>
-
-            <h2>{{ brand.getName }}</h2>
-            <p>Price-Point: ({{ brand.getPricePt }})</p>
-
-            <h3>Edit Brand Information:</h3>
-            <form action='/brands/{{ brand.getId }}' method='post'>
-                <input type='hidden' name='_method' value='patch'>
-
-                <div class='form-group'>
-                    <label for='new_name'>Brand Name</label>
-                    <input type='text' name='new_name' placeholder=' {{ brand.getName }}'>
+            <div class="well">
+                <h2>{{ brand.getName }}</h2>
+                <p>Price-Point: ({{ brand.getPricePt }})</p>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3>Edit Brand Information:</h3>
                 </div>
-                <div class='form-group'>
-                    <select name="price_pt">
-                        <option>Update Price Point</option>
-                        <option value="Expensive">Expensive</option>
-                        <option value="Moderately Priced">Moderately Priced</option>
-                        <option value="Very Afforable">Very Affordable</option>
-                    </select>
+                <div class="panel-body">
+                    <form action='/brands/{{ brand.getId }}' method='post'>
+                        <input type='hidden' name='_method' value='patch'>
+
+                        <div class='form-group'>
+                            <label for='new_name'>Brand Name</label>
+                            <input type='text' name='new_name' placeholder=' {{ brand.getName }}'>
+                        </div>
+                        <div class='form-group'>
+                            <select name="price_pt">
+                                <option>Update Price Point</option>
+                                <option value="Expensive">Expensive</option>
+                                <option value="Moderately Priced">Moderately Priced</option>
+                                <option value="Very Afforable">Very Affordable</option>
+                            </select>
+                        </div>
+                        <button type='submit' class='btn btn-success'>Edit Brand</button>
+                    </form>
                 </div>
-                <button type='submit' class='btn btn-success'>Edit Brand</button>
-            </form>
+            </div>
 
             <form action='/brands' method='post'>
                 <input type='hidden' name='_method' value='delete'>
@@ -38,7 +44,7 @@
             </form>
 
 
-            <a href='/'>Home</a>
+            <a class='btn btn-info' href='/'>Home</a>
         </div>
     </body>
 </html>

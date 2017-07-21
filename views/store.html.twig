@@ -12,35 +12,47 @@
                 <h2>{{ store.getName }} ({{ store.getCity }})</h2>
             </div>
 
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3>Brands Available:</h3>
-                </div>
-                <div class="panel-body">
-                    {% if brands is not empty %}
-                        <ul>
-                            {% for brand in brands %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3>Brands Available:</h3>
+                        </div>
+                        <div class="panel-body">
+                            {% if brands is not empty %}
+                            <ul>
+                                {% for brand in brands %}
                                 <li>
                                     {{ brand.getName }} | {{ brand.getPricePt }}
                                 </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <h3>No brands currently available.</h3>
-                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <h3>No brands currently available.</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3>Add a brand to this store:</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/add_brand" method="post">
+                                <input type="hidden" name="store_id" value="{{ store.getId }}">
+                                <select name="brand_id" type="text">
+                                    {% for brand in all_brands %}
+                                    <option value="{{ brand.getId }}">{{ brand.getName }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="btn btn-info">Add Brand</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <h4>Add a brand to this store:</h4>
-            <form action="/add_brand" method="post">
-                <input type="hidden" name="store_id" value="{{ store.getId }}">
-                <select name="brand_id" type="text">
-                    {% for brand in all_brands %}
-                        <option value="{{ brand.getId }}">{{ brand.getName }}</option>
-                    {% endfor %}
-                </select>
-                <button type="submit" class="btn btn-info">Add Brand</button>
-            </form>
 
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -70,7 +82,7 @@
             </form>
 
 
-            <a href='/'>Home</a>
+            <a class='btn btn-info' href='/'>Home</a>
         </div>
     </body>
 </html>

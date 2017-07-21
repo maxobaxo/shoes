@@ -16,9 +16,20 @@
         {
             $lower_ucfirst_name_arr = array();
             $name_words = explode(" ", $name);
+            // var_dump($name_words);
             foreach ($name_words as $word) {
-                $word = ucfirst(strtolower($word));
-                array_push($lower_ucfirst_name_arr, $word);
+                if ($word == $name_words[0]) {
+                    $word = ucfirst(strtolower($word));
+                    array_push($lower_ucfirst_name_arr, $word);
+                } else {
+                    if (strtolower($word) == 'a' || strtolower($word) == 'the' || strtolower($word) == 'of' || strtolower($word) == 'and') {
+                        $word = strtolower($word);
+                        array_push($lower_ucfirst_name_arr, $word);
+                    } else {
+                        $word = ucfirst(strtolower($word));
+                        array_push($lower_ucfirst_name_arr, $word);
+                    }
+                }
             }
             $name = implode(" ", $lower_ucfirst_name_arr);
             return $name;

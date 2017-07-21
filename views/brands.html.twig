@@ -8,37 +8,48 @@
             <div class='jumbotron'>
                 <h1>Distri-shoe-tion | Brands</h1>
             </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2>Add a Brand</h2>
+                </div>
+                <div class="panel-body">
+                    <form action='/brands' method='post'>
+                        <input placeholder='Brand Name' type='text' name='name' required>
 
-            <h2>Add a Brand</h2>
-            <form action='/brands' method='post'>
-                <input placeholder='Brand Name' type='text' name='name' required>
+                        <label for="Price Point">Select a Price-Point</label>
+                        <select name="price_pt">
+                            <option value="Expensive">Expensive</option>
+                            <option value="Moderately Priced">Moderately Priced</option>
+                            <option value="Very Afforable">Very Affordable</option>
+                        </select>
+                        <button type='submit' class='btn btn-success'>Add Brand</button>
+                    </form>
+                </div>
+            </div>
 
-                <label for="Price Point">Select a Price-Point</label>
-                <select name="price_pt">
-                    <option value="Expensive">Expensive</option>
-                    <option value="Moderately Priced">Moderately Priced</option>
-                    <option value="Very Afforable">Very Affordable</option>
-                </select>
-                <button type='submit' class='btn btn-success'>Add Brand</button>
-            </form>
-
-            <h2>ALL BRANDS:</h2>
-            {% if brands is not empty %}
-                <ul>
-                    {% for brand in brands %}
-                        <li> <a href='/brands/{{ brand.getId }}'>{{ brand.getName }} | {{ brand.getPricePt }}</a></li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <h4>There are no brands in your database.</h4>
-            {% endif %}
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2>ALL BRANDS:</h2>
+                </div>
+                <div class="panel-body">
+                    {% if brands is not empty %}
+                        <ul>
+                            {% for brand in brands %}
+                                <li> <a href='/brands/{{ brand.getId }}'>{{ brand.getName }} | {{ brand.getPricePt }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <h4>There are no brands in your database.</h4>
+                    {% endif %}
+                </div>
+            </div>
 
             <form action='/delete_brands' method='post'>
                 <input type='hidden' name='_method' value='delete'>
                 <button type='submit' class='btn btn-danger'>Delete All Brands</button>
             </form>
 
-            <a href='/'>Home</a>
+            <a class='btn btn-info' href='/'>Home</a>
         </div>
     </body>
 </html>

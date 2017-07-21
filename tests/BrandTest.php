@@ -20,19 +20,19 @@
             Brand::deleteAll();
         }
 
-        function testCapitalizeName()
-        {
-            $name = 'aDidas superFly';
-            $price_pt = 'low';
-            $test_brand = new Brand($name, $price_pt);
-            $test_brand->save();
-
-            // Act
-            $result = $test_brand->capitalizeName($name);
-
-            // Assert
-            $this->assertEquals('Adidas Superfly', $result);
-        }
+        // function testCapitalizeName()
+        // {
+        //     $name = 'the aDidas of the wOrld';
+        //     $price_pt = 'low';
+        //     $test_brand = new Brand($name, $price_pt);
+        //     $test_brand->save();
+        //
+        //     // Act
+        //     $result = $test_brand->capitalizeName($name);
+        //
+        //     // Assert
+        //     $this->assertEquals('The Adidas of the World', $result);
+        // }
 
         function testGetName()
         {

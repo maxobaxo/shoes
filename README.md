@@ -56,6 +56,8 @@ Access Project Repository & Open Project
     * delete all of the brands at a given store.
     * delete all stores in the database.
     * delete all brands in the database.
+* It will not allow duplicate entries of brand names or repeat combinations of store name & city.
+* It will not allow empty entries for store name or brand name.
 
 ## Languages/Technologies Used
 Git, HTML, PHP, Silex, Twig, PHPUnit, CSS, SQL, MySQL, Apache, MAMP

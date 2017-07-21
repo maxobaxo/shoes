@@ -9,30 +9,43 @@
                 <h1>Distri-shoe-tion | Stores</h1>
             </div>
 
-            <h2>Add a Store</h2>
-            <form action='/stores' method='post'>
-                <input placeholder='Store Name' type='text' name='name' required>
-                <input placeholder='City' type='text' name='city'>
-                <button type='submit' class='btn btn-success'>Add Store</button>
-            </form>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2>Add a Store</h2>
+                </div>
+                <div class="panel-body">
+                    <form action='/stores' method='post'>
+                        <input placeholder='Store Name' type='text' name='name' required>
+                        <input placeholder='City' type='text' name='city'>
+                        <button type='submit' class='btn btn-success'>Add Store</button>
+                    </form>
+                </div>
+            </div>
 
-            <h2>ALL STORES:</h2>
-            {% if stores is not empty %}
-                <ul>
-                    {% for store in stores %}
-                        <li> <a href='/stores/{{ store.getId }}'>{{ store.getName }}</a></li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <h4>There are no stores in your database.</h4>
-            {% endif %}
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2>ALL STORES:</h2>
+                </div>
+                <div class="panel-body">
+                    {% if stores is not empty %}
+                        <ul>
+                            {% for store in stores %}
+                                <li> <a href='/stores/{{ store.getId }}'>{{ store.getName }} ({{ store.getCity }})</a></li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <h4>There are no stores in your database.</h4>
+                    {% endif %}
+
+                </div>
+            </div>
 
             <form action='/delete_stores' method='post'>
                 <input type='hidden' name='_method' value='delete'>
                 <button type='submit' class='btn btn-danger'>Delete All Stores</button>
             </form>
 
-            <a href='/'>Home</a>
+            <a class='btn btn-info' href='/'>Home</a>
         </div>
     </body>
 </html>
