@@ -68,12 +68,26 @@
 
         static function getAll()
         {
-
+            $stores = array();
+            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores;");
+            foreach($returned_stores as $store) {
+                $name = $store['name'];
+                $city = $store['city'];
+                $id = $store['id'];
+                $new_store = new Store($name, $city, $id);
+                array_push($stores, $new_store);
+            }
+            return $stores;
         }
 
         static function deleteAll()
         {
-
+            $executed = $GLOBALS['DB']->exec("DELETE FROM stores;");
+            if ($executed) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         function update()
