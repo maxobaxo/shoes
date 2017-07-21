@@ -223,5 +223,25 @@
             // Assert
             $this->assertEquals([$test_store2], $result);
         }
+
+        function testAddBrand()
+        {
+            // $name = 'Payless Shoes';
+            // $city = 'Tuscon';
+            // $test_store = new Store($name, $city);
+            // $test_store->save();
+            //
+            // $name = 'Adidas';
+            // $price_pt = 'low';
+            // $test_brand = new Brand($name, $price_pt);
+            // $test_brand->save();
+            //
+            // // Act
+            // $test_store->delete();
+            // $result = Store::getAll();
+            //
+            // // Assert
+            // $this->assertEquals([$test_store2], $result);
+        }
     }
 ?>

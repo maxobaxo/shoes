@@ -121,5 +121,10 @@
                 return false;
             }
         }
+
+        // function addBrand()
+        // {
+        //
+        // }
     }
 ?>

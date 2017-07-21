@@ -14,9 +14,9 @@
 
                 <label for="Price Point">Select a Price-Point</label>
                 <select name="price_pt">
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
+                    <option value="Expensive">Expensive</option>
+                    <option value="Moderately Priced">Moderately Priced</option>
+                    <option value="Very Afforable">Very Affordable</option>
                 </select>
                 <button type='submit' class='btn btn-success'>Add Brand</button>
             </form>
@@ -25,7 +25,7 @@
             {% if brands is not empty %}
                 <ul>
                     {% for brand in brands %}
-                        <li> <a href='/brands/{{ brand.getId }}'>{{ brand.getName }}</a></li>
+                        <li> <a href='/brands/{{ brand.getId }}'>{{ brand.getName }} | {{ brand.getPricePt }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
