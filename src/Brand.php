@@ -34,7 +34,18 @@
 
         function getId()
         {
+            return $this->id;
+        }
 
+        function save()
+        {
+            $executed = $GLOBALS['DB']->exec("INSERT INTO brands (name, price_pt) VALUES ('{$this->getName()}', '{$this->getPricePt()}');");
+            if ($executed) {
+                $this->id = $GLOBALS['DB']->lastInsertId();
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 ?>

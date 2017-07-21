@@ -82,5 +82,33 @@
             $this->assertEquals($new_price_pt, $result);
         }
 
+        function testGetId()
+        {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'low';
+            $test_brand = new Brand($name, $price_pt);
+            $test_brand->save();
+
+            // Act
+            $result = $test_brand->getId();
+
+            // Assert
+            $this->assertTrue(is_numeric($result));
+        }
+
+        function testSave()
+        {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'low';
+            $test_brand = new Brand($name, $price_pt);
+
+            // Act
+            $executed = $test_brand->save();
+
+            // Assert
+            $this->assertTrue($executed, "The brand was not saved to the database");
+        }
     }
 ?>
