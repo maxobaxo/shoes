@@ -101,9 +101,15 @@
             }
         }
 
-        function updatePricePt()
+        function updatePricePt($new_price_pt)
         {
-
+            $executed = $GLOBALS['DB']->exec("UPDATE brands SET price_pt = '{$new_price_pt}' WHERE id = {$this->getId()};");
+            if ($executed) {
+                $this->setPricePt($new_price_pt);
+                return true;
+            } else {
+                return false;
+            }
         }
 
         function delete()

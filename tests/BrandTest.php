@@ -192,7 +192,19 @@
 
         function testUpdatePricePt()
         {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'medium';
+            $test_brand = new Brand($name, $price_pt);
+            $test_brand->save();
 
+            $new_price_pt = 'high';
+
+            // Act
+            $test_brand->updatePricePt($new_price_pt);
+
+            // Assert
+            $this->assertEquals($new_price_pt, $test_brand->getPricePt());
         }
 
         function testDelete()
