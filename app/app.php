@@ -48,6 +48,15 @@
 
     $app->delete('delete_stores', function() use($app) {
         Store::deleteAll();
+
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
+    });
+
+    $app->delete('/stores', function() use ($app) {
+        $store_id = $_POST['store_id'];
+        $store = Store::find($store_id);
+        $store->delete();
+
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
