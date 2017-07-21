@@ -87,6 +87,7 @@
         return $app['twig']->render('brand.html.twig', array('brand' => $brand));
     });
 
+// After editing a brand, view the updated list of brands
     $app->patch('/brands/{id}', function($id) use ($app) {
         $brand = Brand::find($id);
         $new_name = $_POST['new_name'];
@@ -97,7 +98,6 @@
         if ($new_price_pt) {
             $brand->updatePricePt($new_price_pt);
         }
-
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
@@ -107,6 +107,13 @@
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
 
+// After deleting a single brand, view the updated list of brand
+    $app->delete('/brands', function() use ($app) {
+        $brand_id = $_POST['brand_id'];
+        $brand = Brand::find($brand_id);
+        $brand->delete();
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+    });
 
     return $app;
 ?>
