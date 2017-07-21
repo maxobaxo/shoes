@@ -26,6 +26,11 @@
                 <h4>There are no stores in your database.</h4>
             {% endif %}
 
+            <form action='/delete_stores' method='post'>
+                <input type='hidden' name='_method' value='delete'>
+                <button type='submit' class='btn btn-danger'>Delete All Stores</button>
+            </form>
+
             <a href='/'>Home</a>
         </div>
     </body>
