@@ -69,7 +69,7 @@
         static function getAll()
         {
             $stores = array();
-            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores;");
+            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores ORDER BY name ASC;");
             foreach($returned_stores as $store) {
                 $name = $store['name'];
                 $city = $store['city'];

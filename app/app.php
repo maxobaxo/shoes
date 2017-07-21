@@ -20,6 +20,17 @@
         return $app['twig']->render('index.html.twig');
     });
 
+    $app->get('/stores', function() use ($app) {
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
+    });
+
+    $app->post('/stores', function() use ($app) {
+        $new_store = new Store($_POST['name'], $_POST['city']);
+        $new_store->save();
+
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
+    });
+
 
     return $app;
 ?>
