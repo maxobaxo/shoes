@@ -119,7 +119,6 @@
             $test_brand = new Brand($name, $price_pt);
             $test_brand->save();
 
-            // Arrange
             $name2 = 'Nike';
             $price_pt2 = 'high';
             $test_brand2 = new Brand($name2, $price_pt2);
@@ -141,7 +140,6 @@
             $test_brand = new Brand($name, $price_pt);
             $test_brand->save();
 
-            // Arrange
             $name2 = 'Nike';
             $price_pt2 = 'high';
             $test_brand2 = new Brand($name2, $price_pt2);
@@ -163,7 +161,6 @@
             $test_brand = new Brand($name, $price_pt);
             $test_brand->save();
 
-            // Arrange
             $name2 = 'Nike';
             $price_pt2 = 'high';
             $test_brand2 = new Brand($name2, $price_pt2);
@@ -174,6 +171,33 @@
 
             // Assert
             $this->assertEquals($test_brand2, $result);
+        }
+
+        function testUpdateName()
+        {
+            // Arrange
+            $name = 'Adidas';
+            $price_pt = 'medium';
+            $test_brand = new Brand($name, $price_pt);
+            $test_brand->save();
+
+            $new_name = 'Nike';
+
+            // Act
+            $test_brand->updateName($new_name);
+
+            // Assert
+            $this->assertEquals($new_name, $test_brand->getName());
+        }
+
+        function testUpdatePricePt()
+        {
+
+        }
+
+        function testDelete()
+        {
+
         }
     }
 ?>

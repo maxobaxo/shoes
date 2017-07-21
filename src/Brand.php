@@ -51,7 +51,7 @@
         static function getAll()
         {
             $brands = array();
-            $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
+            $returned_brands = $GLOBALS['DB']->query('SELECT * FROM brands;');
             foreach ($returned_brands as $brand) {
                 $name = $brand['name'];
                 $price_pt = $brand['price_pt'];
@@ -64,7 +64,7 @@
 
         static function deleteAll()
         {
-            $executed = $GLOBALS['DB']->exec("DELETE FROM brands;");
+            $executed = $GLOBALS['DB']->exec('DELETE FROM brands;');
             if ($executed) {
                 return true;
             } else {
@@ -75,7 +75,7 @@
         static function find($search_id)
         {
             $found_brand = null;
-            $returned_brands = $GLOBALS['DB']->prepare("SELECT * FROM brands WHERE id = :id;");
+            $returned_brands = $GLOBALS['DB']->prepare('SELECT * FROM brands WHERE id = :id;');
             $returned_brands->bindPARAM(':id', $search_id, PDO::PARAM_STR);
             $returned_brands->execute();
 
@@ -90,9 +90,15 @@
             return $found_brand;
         }
 
-        function updateName()
+        function updateName($new_name)
         {
-
+            $executed = $GLOBALS['DB']->exec("UPDATE brands SET name = '{$new_name}' WHERE id = {$this->getId()};");
+            if ($executed) {
+                $this->setName($new_name);
+                return true;
+            } else {
+                return false;
+            }
         }
 
         function updatePricePt()
