@@ -31,6 +31,26 @@
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
+    $app->patch('/stores/{id}', function($id) use ($app) {
+        $store = Store::find($id);
+        $new_name = $_POST['new_name'];
+        if ($new_name) {
+            $store->updateName($new_name);
+        }
+
+        $new_city = $_POST['new_city'];
+        if ($new_city) {
+            $store->updateCity($new_city);
+        }
+
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
+    });
+
+    $app->get('/stores/{id}', function($id) use ($app) {
+        $store = Store::find($id);
+
+        return $app['twig']->render('store.html.twig', array('store' => $store));
+    });
 
     return $app;
 ?>
