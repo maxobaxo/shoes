@@ -48,9 +48,22 @@
             }
         }
 
-        static function find()
+        static function find($search_id)
         {
+            $found_store = null;
+            $returned_stores = $GLOBALS['DB']->prepare("SELECT * FROM stores WHERE id = :id;");
+            $returned_stores->bindPARAM(":id", $search_id, PDO::PARAM_STR);
+            $returned_stores->execute();
 
+            foreach($returned_stores as $store) {
+                $name = $store['name'];
+                $city = $store['city'];
+                $id = $store['id'];
+                if ($id = $search_id) {
+                    $found_store = new Store($name, $city, $id);
+                }
+            }
+            return $found_store;
         }
 
         static function getAll()

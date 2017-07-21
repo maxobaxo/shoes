@@ -104,7 +104,22 @@
 
         function testFind()
         {
+            // Arrange
+            $name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($name, $city);
+            $test_store->save();
 
+            $name2 = 'Nordstrom';
+            $city2 = 'Flagstaff';
+            $test_store2 = new Store($name2, $city2);
+            $test_store2->save();
+
+            // Act
+            $result = Store::find($test_store2->getId());
+
+            // Assert
+            $this->assertEquals($test_store2, $result);
         }
 
         function testGetAll()
