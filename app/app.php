@@ -65,7 +65,7 @@
     $app->get('/stores/{id}', function($id) use ($app) {
         $store = Store::find($id);
 
-        return $app['twig']->render('store.html.twig', array('store' => $store));
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
 // View current list of brands
@@ -114,6 +114,15 @@
         $brand->delete();
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
     });
+
+// After adding an brand to a single store, view the store profile page.
+$app->post('/add_brand', function () use ($app) {
+    $brand = Brand::find($_POST['brand_id']);
+    $store = Store::find($_POST['store_id']);
+    $store->addBrand($brand);
+
+    return $app['twig']->render('store.html.twig', array('brands' => $store->getBrands(), 'brand' => $brand, 'all_brands' => Brand::getAll(), 'store' => $store));
+});
 
     return $app;
 ?>

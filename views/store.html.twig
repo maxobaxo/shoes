@@ -7,23 +7,60 @@
             <div class='jumbotron'>
                 <h1>Distri-shoe-tion | Store Profile</h1>
             </div>
+            <div class="well">
+                <h2>{{ store.getName }} ({{ store.getCity }})</h2>
+            </div>
 
-            <h2>{{ store.getName }} ({{ store.getCity }})</h2>
-
-            <h3>Edit Store Information:</h3>
-            <form action='/stores/{{ store.getId }}' method='post'>
-                <input type='hidden' name='_method' value='patch'>
-
-                <div class='form-group'>
-                    <label for='new_name'>Edit Store Name</label>
-                    <input type='text' name='new_name' placeholder=' {{ store.getName }}'>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3>Brands Available:</h3>
                 </div>
-                <div class='form-group'>
-                    <label for='new_city'>Edit Store City</label>
-                    <input type='text' name='new_city' placeholder=' {{ store.getCity }}'>
+                <div class="panel-body">
+                    {% if brands is not empty %}
+                        <ul>
+                            {% for brand in brands %}
+                                <li>
+                                    {{ brand.getName }} | {{ brand.getPricePt }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <h3>No brands currently available.</h3>
+                    {% endif %}
                 </div>
-                <button type='submit' class='btn btn-success'>Edit Store</button>
+            </div>
+
+            <h4>Add a brand to this store:</h4>
+            <form action="/add_brand" method="post">
+                <input type="hidden" name="store_id" value="{{ store.getId }}">
+                <select name="brand_id" type="text">
+                    {% for brand in all_brands %}
+                        <option value="{{ brand.getId }}">{{ brand.getName }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-info">Add Brand</button>
             </form>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3>Edit Store Information:</h3>
+                </div>
+                <div class="panel-body">
+                    <form action='/stores/{{ store.getId }}' method='post'>
+                        <input type='hidden' name='_method' value='patch'>
+
+                        <div class='form-group'>
+                            <label for='new_name'>Edit Store Name</label>
+                            <input type='text' name='new_name' placeholder=' {{ store.getName }}'>
+                        </div>
+                        <div class='form-group'>
+                            <label for='new_city'>Edit Store City</label>
+                            <input type='text' name='new_city' placeholder=' {{ store.getCity }}'>
+                        </div>
+                        <button type='submit' class='btn btn-success'>Edit Store</button>
+                    </form>
+                </div>
+            </div>
 
             <form action='/stores' method='post'>
                 <input type='hidden' name='_method' value='delete'>
