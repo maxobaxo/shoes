@@ -285,7 +285,6 @@
 
             // Assert
             $this->assertEquals([$test_store, $test_store2], $test_brand->getStores());
-
         }
     }
 ?>

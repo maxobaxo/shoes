@@ -130,7 +130,18 @@ $app->post('/add_brand', function () use ($app) {
     $store = Store::find($_POST['store_id']);
     $store->addBrand($brand);
 
-    return $app['twig']->render('store.html.twig', array('brands' => $store->getBrands(), 'brand' => $brand, 'all_brands' => Brand::getAll(), 'store' => $store));
+    $non_brands = array();
+    $brands = $store->getBrands();
+    $all_brands = Brand::getAll();
+    foreach ($all_brands as $brand) {
+        foreach ($brands as $store_brand) {
+            if ($brand->getId() != $store_brand->getId()) {
+                array_push($non_brands, $brand);
+            }
+        }
+    }
+
+    return $app['twig']->render('store.html.twig', array('brands' => $brands, 'brand' => $brand, 'all_brands' => $non_brands, 'store' => $store));
 });
 
     return $app;
