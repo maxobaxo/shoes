@@ -69,6 +69,15 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
+// After adding a brand to a store, view the brand profile page, with list of stores where brand is available.
+    $app->post('/add_store', function () use ($app) {
+        $brand = Brand::find($_POST['brand_id']);
+        $store = Store::find($_POST['store_id']);
+        $brand->addStore($store);
+
+        return $app['twig']->render('brand.html.twig', array('stores' => $brand->getStores(), 'brand' => $brand, 'all_stores' => Store::getAll(), 'store' => $store));
+    });
+
 // View current list of brands
     $app->get('/brands', function() use ($app) {
         return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
@@ -84,7 +93,7 @@
 
     $app->get('brands/{id}', function($id) use ($app) {
         $brand = Brand::find($id);
-        return $app['twig']->render('brand.html.twig', array('brand' => $brand));
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
     });
 
 // After editing a brand, view the updated list of brands

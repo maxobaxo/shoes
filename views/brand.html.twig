@@ -12,6 +12,48 @@
                 <h2>{{ brand.getName }}</h2>
                 <p>Price-Point: ({{ brand.getPricePt }})</p>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3>Available in the following Stores:</h3>
+                        </div>
+                        <div class="panel-body">
+                            {% if stores is not empty %}
+                            <ul>
+                                {% for store in stores %}
+                                <li>
+                                    {{ store.getName }} | {{ store.getCity }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <h3>Not currently available in any stores.</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3>Add {{ brand.getName }} to a store:</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/add_store" method="post">
+                                <input type="hidden" name="brand_id" value="{{ brand.getId }}">
+                                <select name="store_id" type="text">
+                                    {% for store in all_stores %}
+                                    <option value="{{ store.getId }}">{{ store.getName }}</option>
+                                    {% endfor %}
+                                </select>
+                                <button type="submit" class="btn btn-info">Add to Store</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3>Edit Brand Information:</h3>
