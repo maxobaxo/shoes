@@ -142,7 +142,6 @@
             } else {
                 return false;
             }
-
         }
 
         function getBrands()

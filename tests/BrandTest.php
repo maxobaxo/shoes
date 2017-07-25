@@ -240,5 +240,52 @@
             // Assert
             $this->assertEquals([$test_brand2], Brand::getAll());
         }
+
+        function testAddStore()
+        {
+            // Arrange
+            $store_name = 'Adidas';
+            $price_pt = 'medium';
+            $test_brand = new Brand($store_name, $price_pt);
+            $test_brand->save();
+
+            $store_name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($store_name, $city);
+            $test_store->save();
+
+            // Act
+            $test_brand->addStore($test_store);
+
+            // Assert
+            $this->assertEquals([$test_store], $test_brand->getStores());
+        }
+
+        function testGetStores()
+        {
+            // Arrange
+            $store_name = 'Adidas';
+            $price_pt = 'medium';
+            $test_brand = new Brand($store_name, $price_pt);
+            $test_brand->save();
+
+            $store_name = 'Payless Shoes';
+            $city = 'Tuscon';
+            $test_store = new Store($store_name, $city);
+            $test_store->save();
+
+            $store_name2 = 'Nordstrom';
+            $city2 = 'Flagstaff';
+            $test_store2 = new Store($store_name2, $city2);
+            $test_store2->save();
+
+            // Act
+            $test_brand->addStore($test_store);
+            $test_brand->addStore($test_store2);
+
+            // Assert
+            $this->assertEquals([$test_store, $test_store2], $test_brand->getStores());
+
+        }
     }
 ?>
